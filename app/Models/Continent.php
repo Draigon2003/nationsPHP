@@ -15,4 +15,16 @@ protected $primaryKey = "continent_id";
 public $timestamps = false; 
 
     use HasFactory;
+
+    public function regiones(){
+        return $this->hasMany(Region::class,'continent_id');
+    }
+
+    public function paises(){
+        return $this->hasManyThrough(Country::class,
+                                       Region::class,
+                                       'continent_id',
+                                       'region_id',
+                                        );
+    }
 }

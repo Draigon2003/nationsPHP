@@ -14,4 +14,10 @@ class Country extends Model
     //omitir campos de auditoria
     public $timestamps = false; 
     use HasFactory;
+     public function idiomas(){
+        return $this->belongsToMany(Idioma::class,
+                                   'country_languages',
+                                    'country_id',
+                                    'language_id')->withPivot('official');
+     }
 }
